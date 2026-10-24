@@ -1,6 +1,8 @@
 package prosody
 
-import "strings"
+import (
+	"strings"
+)
 
 func analyzeLine(line string, idx int) LineAnalysis {
 	normalizedLine := normalizeLine(line)
@@ -29,6 +31,16 @@ func getAksharas(normalizedLine string) []string {
 		var sb strings.Builder
 		sb.WriteRune(runes[i])
 		i++
+
+		if i < len(runes) && string(runes[i]) == HALANT {
+			sb.WriteRune(runes[i])
+			i++
+
+			if i < len(runes) {
+				sb.WriteRune(runes[i])
+				i++
+			}
+		}
 
 		// Attach vowel signs, halant, visarga, anusvara, and chandrabindu to the current akshara
 		for i < len(runes) && (isVowelSignOrVirama(string(runes[i])) || isEndingMark(string(runes[i]))) {

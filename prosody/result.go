@@ -8,6 +8,8 @@ type LineAnalysis struct {
 	NormalizedLine string   `json:"normalizedLine"`
 	Aksharas       []string `json:"aksharas"`
 	AksharasCount  int      `json:"aksharasCount"`
+	MatraCount     int      `json:"matraCount"`
+	Matras         []int    `json:"matras"`
 }
 
 type Result struct {

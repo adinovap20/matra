@@ -58,6 +58,9 @@ function renderResults(lines) {
     const aksharaCount = document.createElement("p");
     aksharaCount.textContent = `Aksharas Count: ${line.aksharasCount}`;
 
+    const matraCount = document.createElement("p");
+    matraCount.textContent = `Matra Count: ${line.matraCount}`;
+
     const table = document.createElement("table");
     const tbody = document.createElement("tbody");
 
@@ -73,6 +76,18 @@ function renderResults(lines) {
     countLabel.textContent = "Cumulative Akshara:";
     countRow.appendChild(countLabel);
 
+    // Matra Row
+    const matraRow = document.createElement("tr");
+    const matraLabel = document.createElement("th");
+    matraLabel.textContent = "Matra:";
+    matraRow.appendChild(matraLabel);
+
+    // Cumulative Matra Row
+    const cumulativeMatraRow = document.createElement("tr");
+    const cumulativeMatraLabel = document.createElement("th");
+    cumulativeMatraLabel.textContent = "Cumulative Matra:";
+    cumulativeMatraRow.appendChild(cumulativeMatraLabel);
+
     line.aksharas.forEach((akshara, i) => {
       const aksharaCell = document.createElement("td");
       aksharaCell.textContent = akshara;
@@ -83,7 +98,20 @@ function renderResults(lines) {
       countRow.appendChild(countCell);
     });
 
-    tbody.append(aksharaRow, countRow);
+    let sum = 0;
+    line.matras.forEach((matra, i) => {
+      const matraCell = document.createElement("td");
+      matraCell.textContent = matra;
+      matraRow.appendChild(matraCell);
+
+      sum += matra;
+
+      const cumulativeMatraCell = document.createElement("td");
+      cumulativeMatraCell.textContent = sum;
+      cumulativeMatraRow.append(cumulativeMatraCell);
+    });
+
+    tbody.append(aksharaRow, countRow, matraRow, cumulativeMatraRow);
     table.appendChild(tbody);
 
     const tableContainer = document.createElement("div");
@@ -91,7 +119,7 @@ function renderResults(lines) {
     tableContainer.style.maxWidth = "100%";
 
     tableContainer.appendChild(table);
-    article.append(heading, text, aksharaCount, tableContainer);
+    article.append(heading, text, aksharaCount, matraCount, tableContainer);
     secResult.appendChild(article);
   });
 }

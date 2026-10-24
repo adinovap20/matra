@@ -24,10 +24,43 @@ var VOWEL_SIGNS = []string{
 	"ौ",
 }
 
+var DEERGHA_SIGNS = []string{
+	"ा",
+	"ी",
+	"ू",
+	"ॄ",
+	"ॅ",
+	"े",
+	"ै",
+	"ॉ",
+	"ो",
+	"ौ",
+	"ं",
+	"ः",
+	"ँ",
+}
+
+var HRASVA_SIGNS = []string{
+	"ि",
+	"ु",
+	"ृ",
+}
+
 var ENDING_MARKS = []string{
 	"ं",
 	"ः",
 	"ँ",
+}
+
+var DEERGHA_VOWELS = []string{
+	"आ",
+	"ई",
+	"ऊ",
+	"ॠ",
+	"ए",
+	"ऐ",
+	"ओ",
+	"औ",
 }
 
 func isVowelSignOrVirama(ch string) bool {

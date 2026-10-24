@@ -5,12 +5,19 @@ import "strings"
 func analyzeLine(line string, idx int) LineAnalysis {
 	normalizedLine := normalizeLine(line)
 	aksharas := getAksharas(normalizedLine)
+	matras := getMatras(aksharas)
+	matraCnt := 0
+	for _, c := range matras {
+		matraCnt += c
+	}
 	lineAnalysis := LineAnalysis{
 		Index:          idx,
 		Line:           line,
 		NormalizedLine: normalizedLine,
 		Aksharas:       aksharas,
 		AksharasCount:  len(aksharas),
+		Matras:         matras,
+		MatraCount:     matraCnt,
 	}
 	return lineAnalysis
 }
@@ -39,6 +46,41 @@ func getAksharas(normalizedLine string) []string {
 		aksharas = append(aksharas, sb.String())
 	}
 	return aksharas
+}
+
+func getMatras(aksharas []string) []int {
+	matras := []int{}
+	for _, akshara := range aksharas {
+		if strings.HasSuffix(akshara, HALANT) {
+			matras = append(matras, 2)
+			continue
+		}
+
+		foundMatra := false
+		for _, deerghaSign := range DEERGHA_SIGNS {
+			if strings.HasSuffix(akshara, deerghaSign) {
+				foundMatra = true
+			}
+		}
+		if foundMatra {
+			matras = append(matras, 2)
+			continue
+		}
+
+		foundMatra = false
+		for _, deerghaVowel := range DEERGHA_VOWELS {
+			if akshara == deerghaVowel {
+				foundMatra = true
+			}
+		}
+		if foundMatra {
+			matras = append(matras, 2)
+			continue
+		}
+
+		matras = append(matras, 1)
+	}
+	return matras
 }
 
 func normalizeLine(line string) string {

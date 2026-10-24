@@ -1,0 +1,30 @@
+#results {
+    width: 100%;
+    max-width: none;
+}
+
+#results article {
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+#results article > div {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+#results table {
+    width: max-content;
+    max-width: none;
+    white-space: nowrap;
+}
+
+@media (min-width: 1000px) {
+    #results {
+        width: calc(100vw - 3rem);
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

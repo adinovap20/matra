@@ -43,7 +43,7 @@ function renderResults(lines) {
   secResult.append(copyAksharasBtn, gap);
 
   lines.forEach((line, index) => {
-    if (line.text == "") {
+    if (line.text === "") {
       return;
     }
 
@@ -58,11 +58,41 @@ function renderResults(lines) {
     const aksharaCount = document.createElement("p");
     aksharaCount.textContent = `Aksharas Count: ${line.aksharasCount}`;
 
-    const aksharas = document.createElement("p");
-    aksharas.textContent = `Aksharas: ${line.aksharas}`;
+    const table = document.createElement("table");
+    const tbody = document.createElement("tbody");
 
-    article.append(heading, text, aksharaCount, aksharas);
-    secResult.append(article);
+    // Akshara row
+    const aksharaRow = document.createElement("tr");
+    const aksharaLabel = document.createElement("th");
+    aksharaLabel.textContent = "Akshara:";
+    aksharaRow.appendChild(aksharaLabel);
+
+    // Cumulative Akshara row
+    const countRow = document.createElement("tr");
+    const countLabel = document.createElement("th");
+    countLabel.textContent = "Cumulative Akshara:";
+    countRow.appendChild(countLabel);
+
+    line.aksharas.forEach((akshara, i) => {
+      const aksharaCell = document.createElement("td");
+      aksharaCell.textContent = akshara;
+      aksharaRow.appendChild(aksharaCell);
+
+      const countCell = document.createElement("td");
+      countCell.textContent = i + 1;
+      countRow.appendChild(countCell);
+    });
+
+    tbody.append(aksharaRow, countRow);
+    table.appendChild(tbody);
+
+    const tableContainer = document.createElement("div");
+    tableContainer.style.overflowX = "auto";
+    tableContainer.style.maxWidth = "100%";
+
+    tableContainer.appendChild(table);
+    article.append(heading, text, aksharaCount, tableContainer);
+    secResult.appendChild(article);
   });
 }
 

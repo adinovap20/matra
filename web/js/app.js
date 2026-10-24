@@ -70,10 +70,10 @@ function renderResults(lines) {
     aksharaLabel.textContent = "Akshara:";
     aksharaRow.appendChild(aksharaLabel);
 
-    // Cumulative Akshara row
+    // Sr.No. row
     const countRow = document.createElement("tr");
     const countLabel = document.createElement("th");
-    countLabel.textContent = "Cumulative Akshara:";
+    countLabel.textContent = "Sr.No.:";
     countRow.appendChild(countLabel);
 
     // Matra Row
@@ -87,6 +87,12 @@ function renderResults(lines) {
     const cumulativeMatraLabel = document.createElement("th");
     cumulativeMatraLabel.textContent = "Cumulative Matra:";
     cumulativeMatraRow.appendChild(cumulativeMatraLabel);
+
+    // LG Row
+    const lgRow = document.createElement("tr");
+    const lgLabel = document.createElement("th");
+    lgLabel.textContent = "Laghu/Guru:";
+    lgRow.appendChild(lgLabel);
 
     line.aksharas.forEach((akshara, i) => {
       const isLaghu = line.matras[i] === 1;
@@ -106,6 +112,11 @@ function renderResults(lines) {
       matraCell.textContent = line.matras[i];
       matraCell.classList.add(columnClass);
       matraRow.appendChild(matraCell);
+
+      const lgCell = document.createElement("td");
+      lgCell.textContent = isLaghu ? "ल" : "गा";
+      lgCell.classList.add(columnClass);
+      lgRow.appendChild(lgCell);
     });
 
     let sum = 0;
@@ -119,7 +130,7 @@ function renderResults(lines) {
       cumulativeMatraRow.appendChild(cell);
     });
 
-    tbody.append(aksharaRow, countRow, matraRow, cumulativeMatraRow);
+    tbody.append(countRow, aksharaRow, lgRow, matraRow, cumulativeMatraRow);
     table.appendChild(tbody);
 
     const tableContainer = document.createElement("div");

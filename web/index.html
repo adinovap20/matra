@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./vendor/simplecss/simple.min.css" />
+        <link rel="icon" type="image/svg+xml" href="./icons/favicon.svg" />
+        <title>Matra</title>
+    </head>
+    <body>
+        <header>
+            <h1>Matra</h1>
+            <strong>🚧 Work in Progress 🚧</strong>
+            <p>
+                A Sanskrit prosody analyzer that identifies अक्षर, मात्रा, गण,
+                and वृत्त
+            </p>
+        </header>
+        <main>
+            <textarea
+                placeholder="Type or Paste Sanskrit काव्य here..."
+                rows="10"
+            ></textarea>
+            <center>
+                <button id="analyze-button" disabled>Loading...</button>
+            </center>
+        </main>
+        <footer>
+            <p>
+                © 2026 Aditya Panat · Open-source under the
+                <a href="https://github.com/adinovap20/matra/blob/main/LICENSE"
+                    >MIT License</a
+                >
+                ·
+                <a href="https://github.com/adinovap20/matra">GitHub</a>
+            </p>
+        </footer>
+    </body>
+    <script src="./js/wasm_exec.js"></script>
+    <script src="./js/app.js"></script>
+</html>

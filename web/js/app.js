@@ -21,6 +21,27 @@ async function loadMatra() {
 
 function renderResults(lines) {
   secResult.replaceChildren();
+
+  const copyAksharasBtn = document.createElement("button");
+  copyAksharasBtn.textContent = "Copy Aksharas";
+  copyAksharasBtn.addEventListener("click", async () => {
+    const text = lines
+      .filter((line) => line.text !== "")
+      .map((line) => line.aksharas.join("\t"))
+      .join("\n");
+
+    try {
+      await navigator.clipboard.writeText(text);
+      copyAksharasBtn.textContent = "Copied!";
+    } catch (error) {
+      console.error("Failed to copy aksharas:", error);
+      copyAksharasBtn.textContent = "Copy failed";
+    }
+  });
+
+  const gap = document.createElement("p");
+  secResult.append(copyAksharasBtn, gap);
+
   lines.forEach((line, index) => {
     if (line.text == "") {
       return;

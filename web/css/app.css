@@ -28,3 +28,13 @@
         transform: translateX(-50%);
     }
 }
+
+#results .laghu {
+    background-color: #293b32;
+    color: #c2e6cf;
+}
+
+#results .guru {
+    background-color: #44352b;
+    color: #f0d0b5;
+}

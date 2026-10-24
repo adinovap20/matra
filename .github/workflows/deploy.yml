@@ -39,7 +39,7 @@ jobs:
 
       - name: Copy Go WASM runtime
         run: |
-          GOROOT="${go env GOROOT}"
+          GOROOT="$(go env GOROOT)"
           RUNTIME="$GOROOT/lib/wasm/wasm_exec.js"
 
           if [ ! -f "$RUNTIME" ]; then

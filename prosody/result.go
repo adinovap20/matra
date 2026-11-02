@@ -10,6 +10,7 @@ type LineAnalysis struct {
 	AksharasCount  int      `json:"aksharasCount"`
 	MatraCount     int      `json:"matraCount"`
 	Matras         []int    `json:"matras"`
+	Ganas          string   `json:"ganas"`
 }
 
 type Result struct {

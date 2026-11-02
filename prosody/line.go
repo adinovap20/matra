@@ -9,6 +9,7 @@ func analyzeLine(line string, idx int) LineAnalysis {
 	aksharas := getAksharas(normalizedLine)
 	matras := getMatras(aksharas)
 	matraCnt := 0
+	ganas := getGanas(matras)
 	for _, c := range matras {
 		matraCnt += c
 	}
@@ -20,6 +21,7 @@ func analyzeLine(line string, idx int) LineAnalysis {
 		AksharasCount:  len(aksharas),
 		Matras:         matras,
 		MatraCount:     matraCnt,
+		Ganas:          ganas,
 	}
 	return lineAnalysis
 }
@@ -93,6 +95,41 @@ func getMatras(aksharas []string) []int {
 		matras = append(matras, 1)
 	}
 	return matras
+}
+
+func getGanas(matras []int) string {
+	var sb strings.Builder
+	for ptr := 0; ptr < len(matras); {
+		if ptr+2 < len(matras) {
+			if matras[ptr] == 1 && matras[ptr+1] == 2 && matras[ptr+2] == 2 {
+				sb.WriteRune('य')
+			} else if matras[ptr] == 2 && matras[ptr+1] == 2 && matras[ptr+2] == 2 {
+				sb.WriteRune('म')
+			} else if matras[ptr] == 2 && matras[ptr+1] == 2 && matras[ptr+2] == 1 {
+				sb.WriteRune('त')
+			} else if matras[ptr] == 2 && matras[ptr+1] == 1 && matras[ptr+2] == 2 {
+				sb.WriteRune('र')
+			} else if matras[ptr] == 1 && matras[ptr+1] == 2 && matras[ptr+2] == 1 {
+				sb.WriteRune('ज')
+			} else if matras[ptr] == 2 && matras[ptr+1] == 1 && matras[ptr+2] == 1 {
+				sb.WriteRune('भ')
+			} else if matras[ptr] == 1 && matras[ptr+1] == 1 && matras[ptr+2] == 1 {
+				sb.WriteRune('न')
+			} else if matras[ptr] == 1 && matras[ptr+1] == 1 && matras[ptr+2] == 2 {
+				sb.WriteRune('स')
+			}
+			ptr += 3
+			continue
+		}
+		if matras[ptr] == 1 {
+			sb.WriteRune('ल')
+			ptr++
+			continue
+		}
+		sb.WriteString("गा")
+		ptr++
+	}
+	return sb.String()
 }
 
 func normalizeLine(line string) string {

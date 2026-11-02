@@ -52,6 +52,9 @@ function renderResults(lines) {
     const heading = document.createElement("h3");
     heading.textContent = `Line ${index + 1}`;
 
+    const ganas = document.createElement("p");
+    ganas.textContent = `Gana: ${line.ganas}`;
+
     const text = document.createElement("p");
     text.textContent = line.line;
 
@@ -138,7 +141,14 @@ function renderResults(lines) {
     tableContainer.style.maxWidth = "100%";
 
     tableContainer.appendChild(table);
-    article.append(heading, text, aksharaCount, matraCount, tableContainer);
+    article.append(
+      heading,
+      text,
+      ganas,
+      aksharaCount,
+      matraCount,
+      tableContainer,
+    );
     secResult.appendChild(article);
   });
 }

@@ -27,7 +27,8 @@ func Analyze(text string) Result {
 	lines := re.Split(text, -1)
 	lineAnalysis := []LineAnalysis{}
 	for idx, line := range lines {
-		if len(line) == 0 {
+		normalizedLine := normalizeLine(line)
+		if len(normalizedLine) == 0 {
 			continue
 		}
 		lineAnalysis = append(lineAnalysis, analyzeLine(line, idx+1))

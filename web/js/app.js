@@ -55,6 +55,12 @@ function renderResults(lines) {
     const ganas = document.createElement("p");
     ganas.textContent = `Gana: ${line.ganas}`;
 
+    const sanskritVrutta = document.createElement("p");
+    sanskritVrutta.textContent = `Sanskrit Vrutta: ${line.sanskrit_vrutta}`;
+
+    const marathiVrutta = document.createElement("p");
+    marathiVrutta.textContent = `Marathi Vrutta: ${line.marathi_vrutta}`;
+
     const text = document.createElement("p");
     text.textContent = line.line;
 
@@ -145,6 +151,8 @@ function renderResults(lines) {
       heading,
       text,
       ganas,
+      sanskritVrutta,
+      marathiVrutta,
       aksharaCount,
       matraCount,
       tableContainer,

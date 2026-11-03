@@ -13,6 +13,8 @@ func analyzeLine(line string, idx int) LineAnalysis {
 	for _, c := range matras {
 		matraCnt += c
 	}
+	marathiVrutta, _ := IdentifyMarathiVrutta(matras)
+	sanskritVrutta, _ := IdentifySanskritVrutta(matras)
 	lineAnalysis := LineAnalysis{
 		Index:          idx,
 		Line:           line,
@@ -22,6 +24,8 @@ func analyzeLine(line string, idx int) LineAnalysis {
 		Matras:         matras,
 		MatraCount:     matraCnt,
 		Ganas:          ganas,
+		MarathiVrutta:  marathiVrutta,
+		SanskritVrutta: sanskritVrutta,
 	}
 	return lineAnalysis
 }

@@ -1,6 +1,8 @@
 package prosody
 
-import "strings"
+import (
+	"regexp"
+)
 
 type LineAnalysis struct {
 	Index          int      `json:"index"`
@@ -21,7 +23,8 @@ type Result struct {
 }
 
 func Analyze(text string) Result {
-	lines := strings.Split(text, "\n")
+	re := regexp.MustCompile(`[\n॥।|]`)
+	lines := re.Split(text, -1)
 	lineAnalysis := []LineAnalysis{}
 	for idx, line := range lines {
 		if len(line) == 0 {

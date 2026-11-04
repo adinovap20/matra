@@ -2,3 +2,4 @@ web/wasm/
 web/js/wasm_exec.js
 bin/
 assets/
+.aider*
